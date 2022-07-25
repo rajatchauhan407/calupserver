@@ -123,5 +123,6 @@ const checkDuplicateEmail = (email)=>{
                         return false;
                 }
         });
+
 }
 

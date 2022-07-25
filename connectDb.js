@@ -5,7 +5,7 @@ dotenv.config();
 async function connectToMongo(){
   const result = await mongoose.connect('mongodb+srv://rajat_veggi1304:' + process.env.MONGO_ATLAS_PW + '@veggies.znzgp.mongodb.net/calup?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology: true}).then(
         result=>{
-            console.log("Project Calup connected");
+            console.log("Project Cal-up connected");
             // return "Project Silver Connected"
         }
     ).catch(error=>{

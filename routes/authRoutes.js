@@ -3,5 +3,7 @@ const router = express.Router();
 const authController = require("../controller/auth");
 
 
-router.post("/auth-receiver", authController.authGoogle);
+router.get("/authgoogle", authController.authGoogle);
+router.get("/authgoogle/callback", authController.authGoogleCallback);
+router.get("/auth-me",authController.authMe);
 module.exports = router;
