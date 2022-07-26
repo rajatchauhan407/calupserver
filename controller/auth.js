@@ -126,9 +126,9 @@ exports.authMe = async (req,res, next) => {
     const userData = await googleUser.findOne({
       email:decodedToken.email
     });
-    const {email, name, given_name} = userData;
+    const {email, name, given_name , picture} = userData;
     res.set({'Access-Control-Allow-Credentials':true}).status(201).json({
-      email,name,given_name
+      email,name,given_name,picture
     });
   }else{
     res.status(404).send({
