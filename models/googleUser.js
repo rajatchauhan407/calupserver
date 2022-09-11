@@ -2,14 +2,18 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const googleUserSchema = new Schema({
-    googleId:{type:String,require:true},
+    googleId:{type:String},
     email:{type:String, required:true},
-    verified_email:{type:Boolean, required:true},
-    name:{type:String, required:true},
-    given_name:{type:String, required:true},
-    family_name:{type:String, required:true},
-    picture:{type:String, required:true},
-    locale:{type:String, required:true}
+    verified_email:{type:Boolean},
+    name:{type:String},
+    given_name:{type:String},
+    family_name:{type:String},
+    picture:{type:String},
+    locale:{type:String},
+    userPassword:{type:String},
+    dateOfJoining:{type:Date},
+    isActive:{type:Boolean, required:true},
+    isGoogleUser:{type:Boolean, required: true}
 });
 
 module.exports = mongoose.model('GoogleUser',googleUserSchema);

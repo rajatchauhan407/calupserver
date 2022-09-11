@@ -30,14 +30,16 @@ async function findAndCreateUser(userDetails){
               given_name,
               family_name,
               picture,
-              locale
+              locale, 
+              isActive: true,
+              isGoogleUser: true
           });
          await newUser.save();
          console.log("From Google User");
          return newUser;
         }
       }catch(err){
-        console.log(err);
+        // console.log(err);
         return err;
       }
     }
@@ -48,7 +50,7 @@ async function findAndCreateUser(userDetails){
 }
 
 // function to generate jwt
-function generateToken(email, verified_email){
+const generateToken = (email, verified_email=true) => {
   if(verified_email){
     const token = JWT.sign({
       email:email
@@ -112,28 +114,46 @@ exports.authGoogleCallback = async (req, res, next)=>{
     // function will generate json web token for authorization
     const token = generateToken(user.email, user.verified_email);
     res.cookie('token',token,{
-      maxAge:1200000,
+      maxAge:12000000,
       httpOnly:true,
-      secure:false
+      secure:true,
+      sameSite: "Strict"
     }).redirect(`http://localhost:3000/home`);
   }else{
     console.log("It is not starting with oauth2callback");
   }
 }
+
+// auth for normal users
+
 exports.authMe = async (req,res, next) => {
   if(req.cookies.token){
     const decodedToken = JWT.verify(req.cookies.token,process.env.JWT_KEY);
+    console.log(decodedToken);
     const userData = await googleUser.findOne({
       email:decodedToken.email
     });
-    const {email, name, given_name , picture} = userData;
-    res.set({'Access-Control-Allow-Credentials':true}).status(201).json({
-      email,name,given_name,picture
-    });
+    const {email, name, given_name , picture, googleId} = userData;
+      res.set({'Access-Control-Allow-Credentials':true}).status(201).json({
+        email,name,given_name,picture
+      });
   }else{
     res.status(404).send({
       error: "User Not Found"
     })
   }
-  
 } 
+// function to logout
+
+exports.logout = async (req, res, next) =>{
+  if(req.cookies.token){
+    res.clearCookie('token').json({
+      message:"You are logged out"
+    });
+  }else{
+    res.json({
+      message:"cookie clearing not working"
+    });
+  }
+}
+

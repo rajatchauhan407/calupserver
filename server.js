@@ -14,10 +14,18 @@ app.use((req,res,next)=>{
     res.setHeader("Access-Control-Allow-Origin","http://localhost:3000");
     res.setHeader("Access-Control-Allow-Headers","Origin,X-Requested-With, Content-Type, Accept,Authorization");
     res.setHeader("Access-Control-Allow-Methods","GET,POST,PATCH,DELETE,OPTIONS");
+    res.setHeader("Access-Control-Allow-Credentials","true")
     next();
 });
 app.use(cookieParser());
 // console.log(userRoutes.stack[0].route.path);
+
+app.post('/home',(req, res)=>{
+    console.log(req.body);
+    res.json({
+        data:"Received Your request Buddy"
+    });
+})
 app.use(userRoutes);
 app.use(authRoutes);
 app.use(cartRoutes);

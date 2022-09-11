@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "upload-sheet":"node database/helper/uploadSheet.js",
+    "upload-sheet": "node database/helper/uploadSheet.js",
     "start": "nodemon server.js"
   },
   "keywords": [
@@ -29,6 +29,7 @@
     "mongodb": "^4.3.1",
     "mongoose": "^6.2.1",
     "node-fetch": "^3.2.9",
+    "nodemailer": "^6.7.8",
     "nodemon": "^2.0.15",
     "read-excel-file": "^5.4.4",
     "validator": "^13.7.0"

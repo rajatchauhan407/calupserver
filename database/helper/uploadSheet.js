@@ -1,7 +1,8 @@
 const readXlsxFile = require('read-excel-file/node');
 const {connectToMongo} = require('../../connectDb');
-const pathOfSheet = 'material/multiplication.xlsx';
 const Question = require('../../models/question');
+
+const KIND = process.argv[2];
 const schema = {
     'firstOperand' : {
         prop:'firstOperand',
@@ -32,7 +33,22 @@ const schema = {
         type:String
     }
 }
+function getPathOfSheet(kind){
+    switch(kind){
+       case "multiply":
+        return pathOfSheet='material/multiplication.xlsx';
+       case "addition":
+        return pathOfSheet = 'material/addition.xlsx';
+       case "division":
+        return pathOfSheet = 'material/division.xlsx';
+       case "subtraction":
+        return pathOfSheet = 'material/subtraction.xlsx';
+       default:
+        return pathOfSheet = 'material/multiplication.xlsx'; 
+    }
+}
 
+const path = getPathOfSheet(KIND);
 async function uploadSheet(path){
     await connectToMongo();
     const result = await readXlsxFile(path, {schema}).then((rows,errors) => {
@@ -60,5 +76,5 @@ async function uploadSheet(path){
     });
     
 }
-uploadSheet(pathOfSheet);
+uploadSheet(path);
 
