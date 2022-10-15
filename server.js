@@ -7,7 +7,7 @@ const authRoutes = require("./routes/authRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const questionRoutes = require("./routes/questionRoutes");
 const cookieParser = require('cookie-parser');
-connectToMongo();
+connectToMongo(); 
 app.use(express.json({extended:false}));
 app.use(express.urlencoded({extended:false}));
 app.use((req,res,next)=>{
