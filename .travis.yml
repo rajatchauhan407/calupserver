@@ -1,0 +1,18 @@
+language: generic
+sudo: required
+services: 
+  - docker
+# before_install:
+#   - docker build -t rajatchauhan407/cal-up -f Dockerfile.dev .
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "calup-server"
+  env: "Calupserver-env"
+  bucket_name: "elasticbeanstalk-us-east-1-745411510829"
+  bucket_path: "calup-server"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: "$AWS_SECRET_KEY"

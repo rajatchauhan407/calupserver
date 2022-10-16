@@ -210,7 +210,7 @@ exports.confirmEmail = async (req, res, next)=>{
            GoogleUser.findOneAndUpdate(filter,update).then(result =>{
             console.log(result);
             if(result){
-                res.redirect('http://localhost:3000/login');
+                res.redirect('${URL_FRONTEND}/login');
             }
            });
           }catch(error){

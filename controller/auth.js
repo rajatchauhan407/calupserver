@@ -6,6 +6,7 @@ const dotenv = require('dotenv');
 const url = require('url');
 const googleUser = require('../models/googleUser');
 const axios = require('axios').default;
+const {URL, URL_FRONTEND} = require('../config/api');
 dotenv.config();
 
 // function to find and create user(if user is new)
@@ -74,7 +75,7 @@ exports.authGoogle = (req, res, next)=>{
   const oauth2Client = new google.auth.OAuth2(
     process.env.CLIENT_ID,
     process.env.CLIENT_SECRET,
-    "http://localhost:9000/authgoogle/callback"
+    URL + "/authgoogle/callback"
   );
   const scopes = ['https://www.googleapis.com/auth/userinfo.email',
                   'https://www.googleapis.com/auth/userinfo.profile'];
@@ -93,7 +94,7 @@ exports.authGoogleCallback = async (req, res, next)=>{
   const oauth2Client = new google.auth.OAuth2(
     process.env.CLIENT_ID,
     process.env.CLIENT_SECRET,
-    "http://localhost:9000/authgoogle/callback"
+    URL+"/authgoogle/callback"
   );
   // console.log(req.url);
   if (req.url.startsWith('/authgoogle/callback')) {
@@ -118,7 +119,7 @@ exports.authGoogleCallback = async (req, res, next)=>{
       httpOnly:true,
       secure:true,
       sameSite: "Strict"
-    }).redirect(`http://localhost:3000/home`);
+    }).redirect(`${URL_FRONTEND}/home`);
   }else{
     console.log("It is not starting with oauth2callback");
   }
