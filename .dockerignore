@@ -1,1 +1,3 @@
 node_modules
+.git
+docker-compose-dev.yml.txt
