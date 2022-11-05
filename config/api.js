@@ -7,5 +7,4 @@ if(process.env.NODE_ENV === "development"){
     URL = "Calupbackend-env.eba-wxkj9sdg.us-east-1.elasticbeanstalk.com";
     URL_FRONTEND = "Calupfrontend-env.eba-ghpdv5nv.us-east-1.elasticbeanstalk.com ";
 }
-
 module.exports = {URL, URL_FRONTEND};
