@@ -20,12 +20,12 @@ app.use((req,res,next)=>{
 app.use(cookieParser());
 // console.log(userRoutes.stack[0].route.path);
 
-app.post('/home',(req, res)=>{
+app.get('/home',(req, res)=>{
     console.log(req.body);
     res.json({
         data:"Received Your request Buddy"
     });
-})
+});
 app.use(userRoutes);
 app.use(authRoutes);
 app.use(cartRoutes);
