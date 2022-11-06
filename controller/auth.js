@@ -126,7 +126,7 @@ exports.authGoogleCallback = async (req, res, next)=>{
         sameSite: "none",
         maxAge:12000000,
         httpOnly:false,
-        secure:true,
+        secure:false,
         domain:"http://calupfrontend-env.eba-ghpdv5nv.us-east-1.elasticbeanstalk.com"
       }).redirect(`${URL_FRONTEND}/home`);
     }
