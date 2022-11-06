@@ -9,6 +9,7 @@ const questionRoutes = require("./routes/questionRoutes");
 const cookieParser = require('cookie-parser');
 const {URL, URL_FRONTEND} = require('./config/api');
 connectToMongo(); 
+app.set("trust proxy", 1);
 app.use(express.json({extended:false}));
 app.use(express.urlencoded({extended:false}));
 app.use((req,res,next)=>{

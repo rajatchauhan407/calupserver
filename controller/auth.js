@@ -127,7 +127,7 @@ exports.authGoogleCallback = async (req, res, next)=>{
       res.cookie('token',token,{
         maxAge:12000000,
         httpOnly:true,
-        secure:false,
+        secure:true,
         domain:"calupfrontend-env.eba-ghpdv5nv.us-east-1.elasticbeanstalk.com"
       }).redirect(`${URL_FRONTEND}/home`);
     }
