@@ -123,10 +123,10 @@ exports.authGoogleCallback = async (req, res, next)=>{
       }).redirect(`${URL_FRONTEND}/home`);
     }else if(process.env.NODE_ENV === "production"){
       res.cookie('token',token,{
-        maxAge:12000000,
-        httpOnly:true,
-        secure:true,
         sameSite: "none",
+        maxAge:12000000,
+        httpOnly:false,
+        secure:true,
         domain:"http://calupfrontend-env.eba-ghpdv5nv.us-east-1.elasticbeanstalk.com"
       }).redirect(`${URL_FRONTEND}/home`);
     }
