@@ -125,7 +125,6 @@ exports.authGoogleCallback = async (req, res, next)=>{
     }else if(process.env.NODE_ENV === "production"){
       console.log("Working in production mode");
       res.cookie('token',token,{
-        sameSite:"None",
         maxAge:12000000,
         httpOnly:true,
         secure:false,
