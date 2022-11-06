@@ -5,7 +5,7 @@ if(process.env.NODE_ENV === "development"){
     URL_FRONTEND = "http://localhost:3000";
 }else if(process.env.NODE_ENV === "production"){
     URL = "http://Calupbackend-env.eba-wxkj9sdg.us-east-1.elasticbeanstalk.com";
-    URL_FRONTEND = "http://Calupfrontend-env.eba-ghpdv5nv.us-east-1.elasticbeanstalk.com ";
+    URL_FRONTEND = "http://Calupfrontend-env.eba-ghpdv5nv.us-east-1.elasticbeanstalk.com";
 }
 
 module.exports = {URL, URL_FRONTEND};
