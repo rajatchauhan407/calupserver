@@ -114,12 +114,22 @@ exports.authGoogleCallback = async (req, res, next)=>{
     const user = await findAndCreateUser(userInfo);
     // function will generate json web token for authorization
     const token = generateToken(user.email, user.verified_email);
-    res.cookie('token',token,{
-      maxAge:12000000,
-      httpOnly:true,
-      secure:true,
-      sameSite: "Strict"
-    }).redirect(`${URL_FRONTEND}/home`);
+    if(process.env.NODE_ENV === "development"){
+      res.cookie('token',token,{
+        maxAge:12000000,
+        httpOnly:true,
+        secure:true,
+        sameSite: "Strict",
+      }).redirect(`${URL_FRONTEND}/home`);
+    }else if(process.env.NODE_ENV === "production"){
+      res.cookie('token',token,{
+        maxAge:12000000,
+        httpOnly:true,
+        secure:true,
+        sameSite: "none",
+        domain:"http://calupfrontend-env.eba-ghpdv5nv.us-east-1.elasticbeanstalk.com"
+      }).redirect(`${URL_FRONTEND}/home`);
+    }
   }else{
     console.log("It is not starting with oauth2callback");
   }
@@ -139,7 +149,7 @@ exports.authMe = async (req,res, next) => {
         email,name,given_name,picture
       });
   }else{
-    res.status(404).send({
+    res.status(501).send({
       error: "User Not Found"
     })
   }
