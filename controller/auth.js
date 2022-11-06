@@ -115,6 +115,7 @@ exports.authGoogleCallback = async (req, res, next)=>{
     // function will generate json web token for authorization
     const token = generateToken(user.email, user.verified_email);
     if(process.env.NODE_ENV === "development"){
+      console.log("Working in development mode");
       res.cookie('token',token,{
         maxAge:12000000,
         httpOnly:true,
@@ -122,12 +123,13 @@ exports.authGoogleCallback = async (req, res, next)=>{
         sameSite: "Strict",
       }).redirect(`${URL_FRONTEND}/home`);
     }else if(process.env.NODE_ENV === "production"){
+      console.log("Working in production mode");
       res.cookie('token',token,{
         sameSite: "none",
         maxAge:12000000,
-        httpOnly:false,
+        httpOnly:true,
         secure:false,
-        domain:"http://calupfrontend-env.eba-ghpdv5nv.us-east-1.elasticbeanstalk.com"
+        domain:"calupfrontend-env.eba-ghpdv5nv.us-east-1.elasticbeanstalk.com"
       }).redirect(`${URL_FRONTEND}/home`);
     }
   }else{
