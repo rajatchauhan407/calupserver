@@ -7,11 +7,12 @@ const authRoutes = require("./routes/authRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const questionRoutes = require("./routes/questionRoutes");
 const cookieParser = require('cookie-parser');
+const {URL, URL_FRONTEND} = require('./config/api');
 connectToMongo(); 
 app.use(express.json({extended:false}));
 app.use(express.urlencoded({extended:false}));
 app.use((req,res,next)=>{
-    res.setHeader("Access-Control-Allow-Origin","http://localhost:3000");
+    res.setHeader("Access-Control-Allow-Origin",URL_FRONTEND);
     res.setHeader("Access-Control-Allow-Headers","Origin,X-Requested-With, Content-Type, Accept,Authorization");
     res.setHeader("Access-Control-Allow-Methods","GET,POST,PATCH,DELETE,OPTIONS");
     res.setHeader("Access-Control-Allow-Credentials","true")
