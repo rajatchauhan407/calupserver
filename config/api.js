@@ -1,5 +1,6 @@
 let URL;
 let URL_FRONTEND;
+let URL_FRONTEND_DEV;
 // if(process.env.NODE_ENV === "development"){
 //     URL = "http://localhost:9000";
 //     URL_FRONTEND = "http://localhost:3000";
@@ -8,5 +9,6 @@ let URL_FRONTEND;
 //     URL_FRONTEND = "https://www.calup.in";
 // }
 URL = "http://localhost:9000";
+URL_FRONTEND_DEV = "http://localhost:3000";
 URL_FRONTEND = "https://dancing-pegasus-6d8c31.netlify.app/";
-module.exports = {URL,URL_FRONTEND};
+module.exports = {URL,URL_FRONTEND,URL_FRONTEND_DEV};
