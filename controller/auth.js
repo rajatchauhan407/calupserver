@@ -125,11 +125,10 @@ exports.authGoogleCallback = async (req, res, next)=>{
     }else if(process.env.NODE_ENV === "production"){
       console.log("Working in production mode");
       res.cookie('token',token,{
-        sameSite:"lax",
+        sameSite:"None",
         maxAge:12000000,
-        httpOnly:false,
-        secure:false,
-        domain:"calupfrontend-env.eba-ghpdv5nv.us-east-1.elasticbeanstalk.com"
+        httpOnly:true,
+        secure:true
       }).redirect(`${URL_FRONTEND}/home`);
     }
   }else{
